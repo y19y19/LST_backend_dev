@@ -1,0 +1,26 @@
+# comment: the bug is with tritonserver_21.04 perf_analyzer. No found solution.
+
+perf_analyzer --async -m identity_fp32 -u localhost:8011 --measurement-interval 100000 --percentile=95 -i grpc -f /depot/cms/private/users/yao317/SONIC/LST/perf_analyzer_result_gpu.csv -v --input-data="zero"
+*** Measurement Settings ***
+  Batch size: 1
+  Measurement window: 100000 msec
+  Using asynchronous calls for inference
+  Stabilizing using p95 latency
+
+Request concurrency: 1
+  Pass [1] throughput: 0.82 infer/sec. p95 latency: 1337865 usec
+  Pass [2] throughput: 0.84 infer/sec. p95 latency: 1278104 usec
+  Pass [3] throughput: 0.84 infer/sec. p95 latency: 1272281 usec
+  Client: 
+    Request count: 84
+    Throughput: 0.84 infer/sec
+    p50 latency: 1200333 usec
+    p90 latency: 1257071 usec
+    p95 latency: 1272281 usec
+    p99 latency: 1285295 usec
+    Avg gRPC time: 1190133 usec (marshal 96687 usec + response wait 1093443 usec + unmarshal 3 usec)
+  Server: 
+    Request count: 0
+Inferences/Second vs. Client p95 Batch Latency
+Concurrency: 1, throughput: 0.84 infer/sec, latency 1272281 usec
+Floating point exception (core dumped)
